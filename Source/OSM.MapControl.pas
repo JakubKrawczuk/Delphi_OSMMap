@@ -636,9 +636,8 @@ begin
   // ViewRect is current view area in CacheImage coords
   ViewRect := ToInnerCoords(FCacheImageRect.TopLeft, ViewAreaRect);
 
+  //Create Layers holder
   MapMarksLayers := TObjectDictionary<Word, TBitmap>.Create([doOwnsValues]);
-  //Layer := TBitmap.Create;
-  //MapLayers.Add(0, Layer);
 
   Canvas := TCanvas.Create; // Prefer canvas methods over bit blitting
   try
@@ -1311,7 +1310,8 @@ begin
   begin
     LayerBitmap := TBitmap.Create(Canvas.ClipRect.Width, Canvas.ClipRect.Height);
     LayerBitmap.Transparent := true;
-    LayerBitmap.TransParentColor := RGB(255,0,255);
+    LayerBitmap.TransparentColor := RGB(255,0,255);
+    LayerBitmap.TransparentMode := tmFixed;
     Canvas.Brush.Color := LayerBitmap.TransParentColor;
     LayerBitmap.Canvas.FillRect(Canvas.ClipRect);       //TODO: work on transparency
     MapMarksLayers.Add(MapMark.Layer, LayerBitmap);
