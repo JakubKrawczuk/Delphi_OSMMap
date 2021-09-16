@@ -1310,10 +1310,10 @@ begin
   begin
     LayerBitmap := TBitmap.Create(Canvas.ClipRect.Width, Canvas.ClipRect.Height);
     LayerBitmap.Transparent := true;
-    LayerBitmap.TransparentColor := RGB(255,0,255);
+    LayerBitmap.TransparentColor := RGB(255,0,255); //TODO: good idea to make it configurable
     LayerBitmap.TransparentMode := tmFixed;
-    Canvas.Brush.Color := LayerBitmap.TransParentColor;
-    LayerBitmap.Canvas.FillRect(Canvas.ClipRect);       //TODO: work on transparency
+    LayerBitmap.Canvas.Brush.Color := LayerBitmap.TransparentColor;
+    LayerBitmap.Canvas.FillRect(Canvas.ClipRect);
     MapMarksLayers.Add(MapMark.Layer, LayerBitmap);
   end;
   Canvas := LayerBitmap.Canvas;
